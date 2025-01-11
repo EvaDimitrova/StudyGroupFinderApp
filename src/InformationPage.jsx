@@ -8,4 +8,4 @@ const InformationPage = () => {
   );
 };
 
-export default InformationPage;
+export default InformationPage; 

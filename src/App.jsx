@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import Login from './Login';
 import CreateGroup from './CreateGroup';
 
+
 const App = () => {
   return (
     <Router> {}
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/info" element={<InformationPage />} />
         <Route path="/createGroup" element={<CreateGroup />} />
+        
       </Routes>
     </Router>
   );

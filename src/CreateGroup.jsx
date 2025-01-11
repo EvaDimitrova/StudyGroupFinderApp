@@ -1,20 +1,38 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  'https://qfjuqbuysawwhnvzmjta.supabase.co', // supabase URL
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmanVxYnV5c2F3d2hudnptanRhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY0NTU4NjQsImV4cCI6MjA1MjAzMTg2NH0.8ShCQpI4s8BQZbu4ausLCcp-9H6C4t3qy6oL9JnRJrc' // API Key 
+);
 
 function CreateGroup() {
   const [name, setName] = useState('');
   const [className, setClassName] = useState('');
   const [location, setLocation] = useState('');
   const [time, setTime] = useState('');
-  
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // go to homepage and pass group data as state
-    navigate('/', { state: { name, className, location, time } });
+    // insert data into Supabase
+    const { data, error } = await supabase
+      .from('study_groups') // table name from supabase
+      .insert([
+        { name, class_name: className, location, time }
+      ]);
 
+    if (error) {
+      console.error('Error inserting data:', error);
+      return;
+    }
+
+    // go to the home page
+    navigate('/');
+    
     // reset the form
     setName('');
     setClassName('');
@@ -69,6 +87,9 @@ function CreateGroup() {
 }
 
 export default CreateGroup;
+
+
+
 
 
 
