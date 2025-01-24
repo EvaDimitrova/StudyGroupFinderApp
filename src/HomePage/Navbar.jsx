@@ -1,4 +1,4 @@
-// Navbar.js
+//nav bar can be added to access login page again
 /*import React from 'react';
 import { Link } from 'react-router-dom';
 
