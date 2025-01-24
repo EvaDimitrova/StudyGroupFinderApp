@@ -109,7 +109,7 @@ const AccountPage = () => {
                 <p><strong>Location:</strong> {group.location}</p>
                 <p><strong>Date:</strong> {formatDate(group.date)}</p>
                 <p><strong>Time:</strong> {formatTime(group.time)}</p>
-                <p><strong>People Attending:</strong> {attendeesCount[group.id] || 0}</p>
+                <p><strong>People Attending:</strong> {attendeesCount[group.id] + 1|| 0}</p>
                 <button onClick={() => handleLeaveGroup(group.id)} className="leave-group-button">Leave Group</button>
               </div>
             ))}
@@ -125,6 +125,7 @@ const AccountPage = () => {
 };
 
 export default AccountPage;
+
 
 
 

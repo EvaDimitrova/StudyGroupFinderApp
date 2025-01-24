@@ -84,7 +84,7 @@ function Search({ items }) {
               <p><strong>Time:</strong> {formatTime(item.time)}</p>
 
               <p>
-                <strong>People Attending:</strong> {attendeesCount[item.id] || 0}
+                <strong>People Attending:</strong> {attendeesCount[item.id] + 1|| 0}
               </p>
 
               <JoinGroupButton groupId={item.id} />

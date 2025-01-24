@@ -17,8 +17,7 @@ const InformationPage = () => {
   const [attendees, setAttendees] = useState([]);
   const [isJoined, setIsJoined] = useState(false);
 
-
-  //check if user has stored a name and display associated information
+  // check if user has stored a name and display associated information
   useEffect(() => {
     const storedUserName = localStorage.getItem('userName');
     if (storedUserName) {
@@ -29,10 +28,16 @@ const InformationPage = () => {
 
     fetchGroup();
     fetchAttendees();
-    checkIfUserJoined();
   }, [groupId]);
 
-    //get information for a specific group
+  // check if user is already a member when userName changes
+  useEffect(() => {
+    if (userName) {
+      checkIfUserJoined();
+    }
+  }, [userName, groupId]);
+
+  // get information for a specific group
   const fetchGroup = async () => {
     const { data, error } = await supabase
       .from('study_groups')
@@ -47,7 +52,7 @@ const InformationPage = () => {
     }
   };
 
-  //get information on the people attending
+  // get information on the people attending
   const fetchAttendees = async () => {
     const { data, error } = await supabase
       .from('members')
@@ -61,7 +66,7 @@ const InformationPage = () => {
     }
   };
 
-  //check if data exists for the user's name
+  // check if user has already joined the group
   const checkIfUserJoined = async () => {
     const { data, error } = await supabase
       .from('members')
@@ -74,9 +79,10 @@ const InformationPage = () => {
       setIsJoined(true);
     } else if (error) {
       console.error('Error checking if user is a member:', error);
+    } else {
+      setIsJoined(false);  // user not found, so set to false
     }
   };
-
 
   const handleJoinGroup = async () => {
     if (!userName.trim()) {
@@ -102,7 +108,7 @@ const InformationPage = () => {
     }
   };
 
-  //leave a group
+  // leave a group
   const handleLeaveGroup = async () => {
     const { error } = await supabase
       .from('members')
@@ -166,6 +172,7 @@ const InformationPage = () => {
 };
 
 export default InformationPage;
+
 
 
 
