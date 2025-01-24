@@ -1,0 +1,37 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ADD8E6;
+  }
+  
+  .content-container {
+    width: 50%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .join-button, .leave-button, .back-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .leave-button {
+    background-color: red;
+    margin-top: 20px;
+  }
+  
+  .back-button {
+    background-color: #003366;
+    margin-top: 20px;
+  }
+  
